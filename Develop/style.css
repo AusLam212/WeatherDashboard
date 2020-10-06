@@ -1,0 +1,38 @@
+/* Header styling */
+
+header {
+    background-color: rgb(37, 34, 34);
+    text-align: center;
+    width: 100%;
+    height: 100px;
+}
+
+h1 {
+    color: white;
+}
+
+
+/* Form Styling */
+
+#city-input {
+    margin-top: 10px;
+}
+
+#add-city {
+    width: 150px;
+}
+
+#search-area {
+    border: 2px solid rgb(150, 141, 141, .2);
+}
+
+
+/* Weather Forcast */
+
+#current-weather {
+    border: 2px solid rgb(150, 141, 141, .2);
+}
+
+#five-day-forcast {
+    border: 2px solid rgb(150, 141, 141, .2);
+}
