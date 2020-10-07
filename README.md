@@ -32,6 +32,13 @@ The next function, called currentForecast(), took the name of the city entered a
 After that the fiveDayForcast() function grabbed data regarding the date, temperature, and humidity that was to be expected in the next five days. I made sure to append this data as 5 seperate divs, each containing the appropriate info for the five following days.
 
 
+## Final Result
+
+![Weather Dashboard Screenshot](Assets/Weather-Dash-Scrn.png)
+
+This is a screen shot of my final results
+
+
 
 ### Link
 
