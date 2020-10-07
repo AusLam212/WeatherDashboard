@@ -20,6 +20,7 @@ h1 {
 
 #add-city {
     width: 150px;
+    margin-top: 10px;
 }
 
 #search-area {
@@ -31,8 +32,23 @@ h1 {
 
 #current-weather {
     border: 2px solid rgb(150, 141, 141, .2);
+    width: 100%;
+    height: 250px;
 }
 
 #five-day-forcast {
     border: 2px solid rgb(150, 141, 141, .2);
+    width: 100%;
+    height: 200px;
+}
+
+.fdf {
+    background-color: #006AFF;
+    margin: 10px;
+    border-radius: 15px;
+}
+
+.fdf>div {
+    margin: 5px;
+    color: white;
 }
