@@ -4,6 +4,7 @@ var cities = [];
 function renderCity() {
     //Clear value on input text
     $("#cities-added").empty();
+    //Clear 5 day forcast when new one is entered
     $("#Day1").empty();
     $("#Day2").empty();
     $("#Day3").empty();
@@ -12,19 +13,21 @@ function renderCity() {
 
     for (var i = 0; i < cities.length; i++) {
         //Div for new cities to be inouted into
-        var cityDiv = $("<div>");
+        var cityDiv = $("<a>");
         //Adding class to new cityDiv
         cityDiv.addClass("city");
         //Added attribute to cities in cities array
-        cityDiv.attr("data-name", cities[i]);
+        cityDiv.attr("href", "#");
+
         //Adding text to new cityDiv
         cityDiv.text(cities[i]);
         //Adding text to html
         $("#cities-added").append(cityDiv);
+        $("#cities-added").append($("<br>")).append($("<br>"));
 
 
     }
-}
+};
 
 
 $("#add-city").click(function(event) {
@@ -44,16 +47,25 @@ $("#add-city").click(function(event) {
 
 function onPageLoad() {
     $("#cities-added").text(localStorage.getItem("cityListItem"));
-}
+};
 
-onPageLoad();
+// $(".city").click(function(event) {
+//     //Keep page from refreshing
+//     event.preventDefault();
+//     //Grab value of class clicked on
+//     var revisitCity = $(event.target.this).val().trim();
+
+//     cities.push(revisitCity);
+
+//     currentForecast(revisitCity);
+//     fiveDayForcast(revisitCity);
+// });
+
 
 
 function fiveDayForcast(city) {
     var APIkey = "fe80024a92d6b1c9f72576aaefc212e3";
     var queryURL5Day = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&cnt=40&units=imperial&appid=" + APIkey;
-    // var queryURL5Day = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&cnt=5&untis=imperial&appid=" + APIkey;
-    // https://api.openweathermap.org/data/2.5/forecast/daily?q=Austin&cnt=5&appid=fe80024a92d6b1c9f72576aaefc212e3
     $.ajax({
         url: queryURL5Day,
         method: "GET"
@@ -79,6 +91,9 @@ function fiveDayForcast(city) {
         day3.append(day3Date);
         day4.append(day4Date);
         day5.append(day5Date);
+        //Weather Icons
+
+
         //Temp
         var day1Temp = $("<div>").text("Temp: " + response.list[6].main.temp + " °F");
         var day2Temp = $("<div>").text("Temp: " + response.list[14].main.temp + " °F");
@@ -103,8 +118,9 @@ function fiveDayForcast(city) {
         day4.append(day4Humidity);
         day5.append(day5Humidity);
 
+
     });
-}
+};
 
 function currentForecast(city) {
     var APIkey = "fe80024a92d6b1c9f72576aaefc212e3";
@@ -114,6 +130,9 @@ function currentForecast(city) {
         url: queryURLCurrentDay,
         method: "GET",
     }).then(function(response) {
+
+        $("#today").empty();
+
         //Log response to console
         console.log(response);
 
@@ -155,21 +174,28 @@ function currentForecast(city) {
             method: "GET",
         }).then(function(uv) {
             console.log(uv);
-            var uvValue = $("<div>").text(uv.value);
+            var uvValue = $("<div>").text("UV Index: " + uv.value);
 
-            if ()
+            if (uv.value < 2) {
+                uvValue.addClass("uvgreen");
+            } else if (uv.value < 6) {
+                uvValue.addClass("uvyellow");
+            } else if (uv.value < 8) {
+                uvValue.addClass("uvorange");
+            } else if (uv.value < 11) {
+                uvValue.addClass("uvred");
+            } else {
+                uvValue.addClass("uvpurple");
+            }
+
+            currentDay.append(uvValue);
         });
+
+        localStorage.setItem("currentDayData", currentDay);
+
+
     });
+};
 
 
-}
-
-
-
-
-
-
-
-// For Ajax calling data
-// var APIkey = "fe80024a92d6b1c9f72576aaefc212e3";
-// var queryURLCurrentDay = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIkey;
+onPageLoad();

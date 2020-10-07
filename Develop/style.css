@@ -21,6 +21,7 @@ h1 {
 #add-city {
     width: 150px;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 #search-area {
@@ -50,7 +51,7 @@ h3 {
 #five-day-forcast {
     border: 2px solid rgb(150, 141, 141, .2);
     width: 100%;
-    height: 200px;
+    height: 250px;
 }
 
 .fdf {
@@ -73,4 +74,25 @@ h3 {
 
 .uvgreen {
     background-color: green;
+    width: 20%;
+}
+
+.uvyellow {
+    background-color: yellow;
+    width: 20%;
+}
+
+.uvorange {
+    background-color: orange;
+    width: 20%;
+}
+
+.uvred {
+    background-color: red;
+    width: 20%;
+}
+
+.uvpurple {
+    background-color: purple;
+    width: 20%;
 }
