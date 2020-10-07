@@ -126,11 +126,11 @@ function currentForecast(city) {
     var queryURLCurrentDay = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIkey;
 
     $.ajax({
-        url: queryURLCurrentDay
+        url: queryURLCurrentDay,
         method: "GET",
     }).then(function(response) {
         //Log response to console
-
+        console.log(response);
 
     })
 
