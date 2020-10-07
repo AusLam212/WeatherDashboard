@@ -42,6 +42,11 @@ h1 {
     height: 250px;
 }
 
+h3 {
+    margin-left: 5px;
+    margin-top: 20px;
+}
+
 #five-day-forcast {
     border: 2px solid rgb(150, 141, 141, .2);
     width: 100%;
@@ -57,4 +62,15 @@ h1 {
 .fdf>div {
     margin: 5px;
     color: white;
+}
+
+#today>div {
+    margin: 5px;
+}
+
+
+/* UV Colors */
+
+.uvgreen {
+    background-color: green;
 }

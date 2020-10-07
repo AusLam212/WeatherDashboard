@@ -69,32 +69,22 @@ function fiveDayForcast(city) {
         var day5 = $("#Day5");
 
         //Dates
-        var day1Date = $("<div>").text(response.list[0].dt_txt);
-        var day2Date = $("<div>").text(response.list[8].dt_txt);
-        var day3Date = $("<div>").text(response.list[16].dt_txt);
-        var day4Date = $("<div>").text(response.list[24].dt_txt);
-        var day5Date = $("<div>").text(response.list[32].dt_txt);
-        console.log(day1Date);
-        console.log(day2Date);
-        console.log(day3Date);
-        console.log(day4Date);
-        console.log(day5Date);
+        var day1Date = $("<div>").text(response.list[6].dt_txt);
+        var day2Date = $("<div>").text(response.list[14].dt_txt);
+        var day3Date = $("<div>").text(response.list[22].dt_txt);
+        var day4Date = $("<div>").text(response.list[30].dt_txt);
+        var day5Date = $("<div>").text(response.list[38].dt_txt);
         day1.append(day1Date);
         day2.append(day2Date);
         day3.append(day3Date);
         day4.append(day4Date);
         day5.append(day5Date);
         //Temp
-        var day1Temp = $("<div>").text("Temp: " + response.list[0].main.temp + " °F");
-        var day2Temp = $("<div>").text("Temp: " + response.list[8].main.temp + " °F");
-        var day3Temp = $("<div>").text("Temp: " + response.list[16].main.temp + " °F");
-        var day4Temp = $("<div>").text("Temp: " + response.list[24].main.temp + " °F");
-        var day5Temp = $("<div>").text("Temp: " + response.list[32].main.temp + " °F");
-        console.log(day1Temp);
-        console.log(day2Temp);
-        console.log(day3Temp);
-        console.log(day4Temp);
-        console.log(day5Temp);
+        var day1Temp = $("<div>").text("Temp: " + response.list[6].main.temp + " °F");
+        var day2Temp = $("<div>").text("Temp: " + response.list[14].main.temp + " °F");
+        var day3Temp = $("<div>").text("Temp: " + response.list[22].main.temp + " °F");
+        var day4Temp = $("<div>").text("Temp: " + response.list[30].main.temp + " °F");
+        var day5Temp = $("<div>").text("Temp: " + response.list[38].main.temp + " °F");
         day1.append(day1Temp);
         day2.append(day2Temp);
         day3.append(day3Temp);
@@ -102,24 +92,19 @@ function fiveDayForcast(city) {
         day5.append(day5Temp);
 
         //Humidity
-        var day1Humidity = $("<div>").text("Humidity: " + response.list[0].main.humidity + "%");
-        var day2Humidity = $("<div>").text("Humidity: " + response.list[8].main.humidity + "%");
-        var day3Humidity = $("<div>").text("Humidity: " + response.list[16].main.humidity + "%");
-        var day4Humidity = $("<div>").text("Humidity: " + response.list[24].main.humidity + "%");
-        var day5Humidity = $("<div>").text("Humidity: " + response.list[32].main.humidity + "%");
-        console.log(day1Humidity);
-        console.log(day2Humidity);
-        console.log(day3Humidity);
-        console.log(day4Humidity);
-        console.log(day5Humidity);
+        var day1Humidity = $("<div>").text("Humidity: " + response.list[6].main.humidity + "%");
+        var day2Humidity = $("<div>").text("Humidity: " + response.list[14].main.humidity + "%");
+        var day3Humidity = $("<div>").text("Humidity: " + response.list[22].main.humidity + "%");
+        var day4Humidity = $("<div>").text("Humidity: " + response.list[30].main.humidity + "%");
+        var day5Humidity = $("<div>").text("Humidity: " + response.list[38].main.humidity + "%");
         day1.append(day1Humidity);
         day2.append(day2Humidity);
         day3.append(day3Humidity);
         day4.append(day4Humidity);
         day5.append(day5Humidity);
 
-    })
-};
+    });
+}
 
 function currentForecast(city) {
     var APIkey = "fe80024a92d6b1c9f72576aaefc212e3";
@@ -132,11 +117,54 @@ function currentForecast(city) {
         //Log response to console
         console.log(response);
 
-    })
+        //Current Date
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
 
+        today = mm + '/' + dd + '/' + yyyy;
+
+
+        //Current Forecast Div Variable
+        var currentDay = $("#today");
+
+
+        //Name and Date of city
+        var cityNameAndDate = $("<h3>").text(response.name + "      " + today);
+        currentDay.append(cityNameAndDate);
+
+        //Temperature
+        var currentTemp = $("<div>").text("Temperature: " + response.main.temp + " °F");
+        currentDay.append(currentTemp);
+
+        //Humidity
+        var currentHumidity = $("<div>").text("Humidity: " + response.main.humidity + "%");
+        currentDay.append(currentHumidity);
+
+        //Wind Speed
+        var currentWind = $("<div>").text("Wind Speed: " + response.wind.speed + " mph");
+        currentDay.append(currentWind);
+
+        var lat = response.coord.lat;
+        var lon = response.coord.lon;
+        var queryURLUV = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + APIkey;
+
+        $.ajax({
+            url: queryURLUV,
+            method: "GET",
+        }).then(function(uv) {
+            console.log(uv);
+            var uvValue = $("<div>").text(uv.value);
+
+            if ()
+        });
+    });
 
 
 }
+
+
 
 
 
